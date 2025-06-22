@@ -1,4 +1,4 @@
-# Flash Card App
+# Flash Card App to learn Hindi well
 
 import tkinter
 import pandas
