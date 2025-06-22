@@ -11,9 +11,9 @@ data_dict = {}
 
 #---------------------------------- READING DATA FILE -------------------------------------#
 try:
-    data = pandas.read_csv("Flash Card app/data/Words to learn.csv")
+    data = pandas.read_csv("./Words to learn.csv")
 except FileNotFoundError:
-    original_data = pandas.read_csv("Flash Card app/data/hindi_words.csv")
+    original_data = pandas.read_csv("./hindi_words.csv")
     data_dict = original_data.to_dict(orient = "records")
 else:
     data_dict = data.to_dict(orient = "records")
@@ -42,7 +42,7 @@ def flip_card():
 def is_known():
     data_dict.remove(current_card)
     data = pandas.DataFrame(data_dict)
-    data.to_csv("Flash Card app/data/Words to learn.csv", index = False)
+    data.to_csv("./Words to learn.csv", index = False)
     next_card()
 
 #---------------------------------------- UI ----------------------------------------#
@@ -58,12 +58,12 @@ flip_timer = window.after(3000, func = flip_card)
 canvas = tkinter.Canvas(width = 800, height = 526, bg = BACKGROUND_COLOR, highlightthickness = 0)
 
 # Creating the front card
-card_front = tkinter.PhotoImage(file = "Flash Card app/images/card_front.png")
+card_front = tkinter.PhotoImage(file = "./card_front.png")
 card_background = canvas.create_image(400, 263, image = card_front)
 canvas.grid(row = 0, column = 0, columnspan = 2)
 
 # Creating the back card
-card_back = tkinter.PhotoImage(file = "Flash Card app/images/card_back.png")
+card_back = tkinter.PhotoImage(file = "./card_back.png")
 
 # Creating the title 'Hindi'
 card_title = canvas.create_text(410, 150, text = "", font = ("Ariel", 40, "italic"))
@@ -72,12 +72,12 @@ card_title = canvas.create_text(410, 150, text = "", font = ("Ariel", 40, "itali
 card_word = canvas.create_text(410, 263, text = "", font = ("Ariel", 60, "bold"))
 
 # Creating the wrong button '❌'
-wrong_image = tkinter.PhotoImage(file = "Flash Card app/images/wrong.png")
+wrong_image = tkinter.PhotoImage(file = "./wrong.png")
 wrong_button = tkinter.Button(image = wrong_image, highlightthickness = 0, command = next_card)
 wrong_button.grid(row = 1, column = 0)
 
 # Creating the right button '✔'
-right_image = tkinter.PhotoImage(file = "Flash Card app/images/right.png")
+right_image = tkinter.PhotoImage(file = "./right.png")
 right_button = tkinter.Button(image = right_image, highlightthickness = 0, command = is_known)
 right_button.grid(row = 1, column = 1)
 
